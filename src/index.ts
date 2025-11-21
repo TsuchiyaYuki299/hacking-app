@@ -1,17 +1,17 @@
 import { serve } from "@hono/node-server";
 import { Hono } from "hono";
-import { serveStatic } from '@hono/node-server/serve-static' //静的ファイルを配る機能
+import { serveStatic } from "@hono/node-server/serve-static"; //静的ファイルを配る機能
 import db from "./db.js";
 import { loginPage } from "./view.js";
 
 const app = new Hono();
 
 // 「/public/〜」というURLへのアクセスがあったら、実際のファイルを探しに行く設定
-app.use('/public/*', serveStatic({ root: './'}))
+app.use("/public/*", serveStatic({ root: "./" }));
 
 app.get("/", (c) => {
-  return c.html(loginPage)
-})
+  return c.html(loginPage);
+});
 
 app.post("/login", async (c) => {
   // ユーザーが送ってきたデータ（JSON）を受け取る

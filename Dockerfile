@@ -14,7 +14,6 @@ RUN npm ci
 COPY . .
 
 # 6. TypeScriptのビルド（HonoをJSに変換）
-# ※package.jsonのscriptsに"build"があるか後で確認します
 RUN npm run build
 
 # 7. ポート公開
