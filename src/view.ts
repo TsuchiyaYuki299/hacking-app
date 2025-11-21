@@ -10,7 +10,7 @@ export const loginPage = html`
   </head>
   <body>
     <div id="opening-screen">
-      <img src="/public/logo.jpg" id="opening-logo" alt="わくわくハッキング">
+      <img src="/public/logo.png" id="opening-logo" alt="わくわくハッキング">
     </div>
 
     <div class="terminal hidden" id="main-terminal">
