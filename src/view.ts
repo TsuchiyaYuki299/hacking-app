@@ -37,17 +37,23 @@ export const loginPage = html`
 
     <dialog id="explain-dialog">
       <h2 style="margin-top:0; border-bottom: 1px solid #00ff00;">SECRET FILE: TRUTH</h2>
-      <p>なぜログインできてしまったのか？</p>
-      <p>通常、システムは以下の命令でチェックしています：<br>
-      「パスワードが <code>一致する</code> なら通す」</p>
+      <h3 style="margin-bottom: 5px; color: #ccffcc;">なぜこれで侵入できたの？</h3>
       
-      <p>しかし、魔法の言葉 <code>' OR '1'='1</code> を入れると、命令文がこう変わってしまいます：<br>
-      「パスワードが空、<strong>または、1と1が同じ</strong> なら通す」</p>
+      <p>プログラムの中で、SQL文（命令書）は以下のように組み立てられました。</p>
       
-      <p>1と1は同じですよね(TRUE)<br>
-      そのため、システムは「条件クリア！」と勘違いして、鍵を開けてしまったのです。</p>
+      <p><code>SELECT * FROM users WHERE username = 'admin' AND password = '' OR '1'='1'</code></p>
       
-      <p style="font-size: 0.8rem; color: #88ff88;">※ これが「SQLインジェクション」という有名な攻撃手法です。</p>
+      <p>コンピュータはこの命令を左から順に読みますが、最後の部分を見てください。<br>
+      <code>OR '1'='1'</code></p>
+      
+      <p>これは日本語に訳すと<strong>「または、1と1が同じならOK」</strong>という意味です。<br>
+      1と1は常に同じ（True）ですよね？</p>
+      
+      <p>つまり、パスワードが合っていようがいまいが、<strong>「または1=1（正解）なら全部OK！」</strong>というルールが追加されたことで、ガードマン（DB）は「あ、条件満たしてるんで通っていいっすよ」と通してしまったのです。</p>
+      
+      <p style="font-size: 0.9rem; color: #88ff88; border-top: 1px dashed #005500; padding-top: 10px;">
+        これがSQLインジェクションの正体です。
+      </p>
       
       <button class="close-btn" onclick="closeModal()">CLOSE FILE</button>
     </dialog>
@@ -105,4 +111,4 @@ export const loginPage = html`
     </script>
   </body>
   </html>
-  `
+`
