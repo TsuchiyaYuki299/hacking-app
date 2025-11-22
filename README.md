@@ -40,7 +40,8 @@ SELECT * FROM users WHERE username = 'admin' AND password = '' OR '1'='1'
 
 コンテストの規定に合わせ、クライアントサイド（JavaScript）だけでなく、**サーバーサイド（Hono）での処理**を実装しています。
 
-- **Frontend:** HTML, CSS (完全分離構成), JavaScript (Fetch API)
+- **Main Language:** TypeScript
+- **Frontend:** HTML(Honoで生成しています), CSS (完全分離構成), JavaScript (Fetch API)
 - **Backend:** Hono (v4), TypeScript
 - **Database:** SQLite (better-sqlite3 / In-Memory)
 - **Infrastructure:** Google Cloud Run (Docker)
